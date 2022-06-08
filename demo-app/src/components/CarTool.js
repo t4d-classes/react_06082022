@@ -17,7 +17,7 @@ export const CarTool = (props) => {
           </tr>
         </thead>
         <tbody>
-          {props.keycars.map(car => <tr key={car.id}>
+          {props.cars.map(car => <tr key={car.id}>
             <td>{car.id}</td>
             <td>{car.make}</td>
             <td>{car.model}</td>

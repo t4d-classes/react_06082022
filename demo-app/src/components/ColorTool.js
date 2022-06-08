@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 
 import { ToolHeader } from './ToolHeader';
 import { ColorList } from './ColorList';
+import { ColorForm } from './ColorForm';
 
 export const ColorTool = ({ colors, headerText }) => {
 
@@ -9,6 +10,7 @@ export const ColorTool = ({ colors, headerText }) => {
     <>
       <ToolHeader headerText={headerText} />
       <ColorList colors={colors} />
+      <ColorForm buttonText="Add Color" />
     </>
   );
 
