@@ -1,6 +1,10 @@
 import { createRoot } from 'react-dom/client';
 
-import { HelloWorld } from './components/HelloWorld';
+import { ColorTool } from './components/ColorTool';
+import { CarTool } from './components/CarTool';
 
 const root = createRoot(document.querySelector('#root'));
-root.render(<HelloWorld />);
+root.render(<>
+  <ColorTool />
+  <CarTool />
+</>);
