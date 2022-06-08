@@ -1,10 +1,6 @@
-export const ColorTool = () => {
+import PropTypes from 'prop-types';
 
-  const colors = [
-    { id: 1, name: 'red', hexcode: 'ff0000' },
-    { id: 2, name: 'green', hexcode: '00ff00' },
-    { id: 3, name: 'blue', hexcode: '0000ff' },
-  ];
+export const ColorTool = (props) => {
 
   return (
     <>
@@ -12,9 +8,21 @@ export const ColorTool = () => {
         <h1>Color Tool</h1>
       </header>
       <ul>
-        {colors.map(color => <li key={color.id}>{color.name}</li>)}
+        {props.colors.map(color => <li key={color.id}>{color.name}</li>)}
       </ul>
     </>
   );
 
+};
+
+ColorTool.defaultProps = {
+  colors: [],
+};
+
+ColorTool.propTypes = {
+  colors: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired,
+    hexcode: PropTypes.string.isRequired,
+  })).isRequired,
 };

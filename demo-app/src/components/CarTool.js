@@ -2,7 +2,7 @@ export const CarTool = () => {
 
   const cars = [
     { id: 1, make: 'Ford', model: 'Fusion Hybrid', year: 2018, color: 'red', price: 48000 },
-    { id: 1, make: 'Tesla', model: 'S', year: 2020, color: 'blue', price: 120000 },
+    { id: 2, make: 'Tesla', model: 'S', year: 2020, color: 'blue', price: 120000 },
   ];
 
   return (
