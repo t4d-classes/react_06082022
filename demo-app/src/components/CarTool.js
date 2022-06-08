@@ -1,10 +1,10 @@
+import { ToolHeader } from './ToolHeader';
+
 export const CarTool = (props) => {
 
   return (
     <>
-    <header>
-      <h1>Car Tool</h1>
-    </header>
+      <ToolHeader headerText="Car Tool" />
       <table>
         <thead>
           <tr>

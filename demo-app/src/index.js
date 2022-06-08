@@ -16,7 +16,7 @@ const cars = [
 
 const root = createRoot(document.querySelector('#root'));
 root.render(<>
-  {/* React.createElement(ColorTool, { colors: colorList })  */}
-  <ColorTool colors={colorList} />
+  {/* React.createElement(ColorTool, { colors: colorList, headerText: "Bob" })  */}
+  <ColorTool colors={colorList} headerText="Color Tool" />
   <CarTool cars={cars} />
 </>);

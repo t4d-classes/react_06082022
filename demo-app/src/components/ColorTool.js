@@ -1,15 +1,14 @@
 import PropTypes from 'prop-types';
 
-export const ColorTool = (props) => {
+import { ToolHeader } from './ToolHeader';
+import { ColorList } from './ColorList';
+
+export const ColorTool = ({ colors, headerText }) => {
 
   return (
     <>
-      <header>
-        <h1>Color Tool</h1>
-      </header>
-      <ul>
-        {props.colors.map(color => <li key={color.id}>{color.name}</li>)}
-      </ul>
+      <ToolHeader headerText={headerText} />
+      <ColorList colors={colors} />
     </>
   );
 
