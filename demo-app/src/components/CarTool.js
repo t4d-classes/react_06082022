@@ -8,7 +8,17 @@ export const CarTool = ({ cars: initialCars }) => {
 
   const [ cars, setCars ] = useState([...initialCars]);
 
-  const addCar = (car) => {
+  const [ editCarId, setEditCarId ] = useState(-1);
+
+  const editCar = carId => {
+    setEditCarId(carId);
+  };
+
+  const cancelCar = carId => {
+    setEditCarId(-1);
+  };
+
+  const addCar = car => {
     setCars([
       ...cars,
       {
@@ -16,16 +26,28 @@ export const CarTool = ({ cars: initialCars }) => {
         id: Math.max(...cars.map(c => c.id), 0) + 1,
       },
     ]);
+    setEditCarId(-1);
   };
 
-  const deleteCar = (carId) => {
+  const saveCar = car => {
+    const carIndex = cars.findIndex(c => c.id === car.id);
+    const newCars = [...cars];
+    newCars[carIndex] = car;
+    setCars(newCars);
+    setEditCarId(-1);
+  };
+
+  const deleteCar = carId => {
     setCars(cars.filter(car => car.id !== carId));
+    setEditCarId(-1);
   };
 
   return (
     <>
       <ToolHeader headerText="Car Tool" />
-      <CarTable cars={cars} onDeleteCar={deleteCar} />
+      <CarTable cars={cars} editCarId={editCarId}
+        onEditCar={editCar} onDeleteCar={deleteCar}
+        onSaveCar={saveCar} onCancelCar={cancelCar} />
       <CarForm buttonText="Add Car" onSubmitCar={addCar} />
     </>
   );
