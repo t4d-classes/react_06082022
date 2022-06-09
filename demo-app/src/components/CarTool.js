@@ -18,10 +18,14 @@ export const CarTool = ({ cars: initialCars }) => {
     ]);
   };
 
+  const deleteCar = (carId) => {
+    setCars(cars.filter(car => car.id !== carId));
+  };
+
   return (
     <>
       <ToolHeader headerText="Car Tool" />
-      <CarTable cars={cars} />
+      <CarTable cars={cars} onDeleteCar={deleteCar} />
       <CarForm buttonText="Add Car" onSubmitCar={addCar} />
     </>
   );
