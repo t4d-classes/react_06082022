@@ -1,8 +1,6 @@
 import { useEffect, useCallback, useState } from 'react';
 
-import { useList } from '../hooks/useList';
-
-import { allColors } from '../services/colorsData';
+import { allColors, appendColor, removeColor } from '../services/colorsData';
 
 export const useColorToolStore = () => {
 
@@ -13,8 +11,15 @@ export const useColorToolStore = () => {
     setColors(colors);
   }, []);
 
-  const addColor = () => {};
-  const deleteColor = () => {};
+  const addColor = useCallback(async color => {
+    await appendColor(color);
+    await refreshColors();
+  }, [refreshColors]);
+
+  const deleteColor = useCallback(async colorId => {
+    await removeColor(colorId);
+    await refreshColors();
+  }, [refreshColors]);
 
   useEffect(() => {
     refreshColors();
