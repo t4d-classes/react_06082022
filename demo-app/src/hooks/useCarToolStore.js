@@ -1,38 +1,48 @@
-import { useState } from 'react';
+import { useEffect, useCallback, useState } from 'react';
 
-import { useList } from '../hooks/useList';
+import { allCars, appendCar, replaceCar, removeCar } from '../services/carsData';
 
-export const useCarToolStore = (initialCars) => {
 
-  const [
-    cars, appendCar, replaceCar, removeCar,
-  ] = useList([...initialCars]);
+export const useCarToolStore = () => {
+
+  const [ cars, setCars ] = useState([]);
+
+  const refreshCars = useCallback(async () => {
+    const cars = await allCars();
+    setCars(cars);
+  }, []);
 
   const [ editCarId, setEditCarId ] = useState(-1);
 
-  const editCar = carId => {
+  const editCar = useCallback(carId => {
     setEditCarId(carId);
-  };
+  }, []);
 
-  const cancelCar = carId => {
+  const cancelCar = useCallback(carId => {
     setEditCarId(-1);
-  };
+  }, []);
 
-  const addCar = car => {
-    appendCar(car);
+  const addCar = useCallback(async car => {
+    await appendCar(car);
+    await refreshCars();
     setEditCarId(-1);
-  };
+  }, [refreshCars]);
 
-  const saveCar = car => {
-    replaceCar(car);
+  const saveCar = useCallback(async car => {
+    await replaceCar(car);
+    await refreshCars();
     setEditCarId(-1);
-  };
+  }, [refreshCars]);
 
-  const deleteCar = carId => {
-    removeCar(carId);
+  const deleteCar = useCallback(async carId => {
+    await removeCar(carId);
+    await refreshCars();
     setEditCarId(-1);
-  };
+  }, [refreshCars]);  
 
+  useEffect(() => {
+    refreshCars();
+  }, [refreshCars]);  
 
   return {
     cars,
