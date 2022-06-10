@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-import { useList } from '../hooks/useList';
+import { useColorToolStore } from '../hooks/useColorToolStore';
 
 import { ToolHeader } from './ToolHeader';
 import { ItemActionList } from './ItemActionList';
@@ -8,8 +8,8 @@ import { ColorForm } from './ColorForm';
 
 export const ColorTool = ({ colors: initialColors, headerText }) => {
 
-  const [ colors, addColor, , deleteColor ] = useList([...initialColors]);
-
+  const { colors, addColor, deleteColor } = useColorToolStore(initialColors);
+ 
   return (
     <>
       <ToolHeader headerText={headerText} />
