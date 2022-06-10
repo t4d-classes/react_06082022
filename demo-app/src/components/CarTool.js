@@ -1,6 +1,4 @@
-import { useState } from 'react';
-
-import { useList } from '../hooks/useList';
+import { useCarToolStore } from '../hooks/useCarToolStore';
 
 import { ToolHeader } from './ToolHeader';
 import { CarTable } from './CarTable';
@@ -8,34 +6,11 @@ import { CarForm } from './CarForm';
 
 export const CarTool = ({ cars: initialCars }) => {
 
-  const [
-    cars, appendCar, replaceCar, removeCar,
-  ] = useList([...initialCars]);
-
-  const [ editCarId, setEditCarId ] = useState(-1);
-
-  const editCar = carId => {
-    setEditCarId(carId);
-  };
-
-  const cancelCar = carId => {
-    setEditCarId(-1);
-  };
-
-  const addCar = car => {
-    appendCar(car);
-    setEditCarId(-1);
-  };
-
-  const saveCar = car => {
-    replaceCar(car);
-    setEditCarId(-1);
-  };
-
-  const deleteCar = carId => {
-    removeCar(carId);
-    setEditCarId(-1);
-  };
+  const {
+    cars, editCarId,
+    editCar, cancelCar,
+    addCar, saveCar, deleteCar
+  } = useCarToolStore(initialCars);
 
   return (
     <>
