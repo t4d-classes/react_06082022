@@ -1,16 +1,16 @@
-import { useCarToolStore } from '../hooks/useCarToolStore';
+import { useCarToolStoreContext } from '../contexts/carToolStoreContext';
 
 import { ToolHeader } from './ToolHeader';
 import { CarTable } from './CarTable';
 import { CarForm } from './CarForm';
 
-export const CarTool = ({ cars: initialCars }) => {
+export const CarTool = () => {
 
   const {
     cars, editCarId,
     editCar, cancelCar,
     addCar, saveCar, deleteCar
-  } = useCarToolStore(initialCars);
+  } = useCarToolStoreContext();
 
   return (
     <>
