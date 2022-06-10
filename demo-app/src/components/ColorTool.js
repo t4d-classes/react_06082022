@@ -1,14 +1,14 @@
 import PropTypes from 'prop-types';
 
-import { useColorToolStore } from '../hooks/useColorToolStore';
+import { useColorToolStoreContext } from '../contexts/colorToolStoreContext';
 
 import { ToolHeader } from './ToolHeader';
 import { ItemActionList } from './ItemActionList';
 import { ColorForm } from './ColorForm';
 
-export const ColorTool = ({ colors: initialColors, headerText }) => {
+export const ColorTool = ({ headerText }) => {
 
-  const { colors, addColor, deleteColor } = useColorToolStore(initialColors);
+  const { colors, addColor, deleteColor } = useColorToolStoreContext();
  
   return (
     <>

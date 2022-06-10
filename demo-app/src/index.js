@@ -3,11 +3,7 @@ import { createRoot } from 'react-dom/client';
 import { ColorTool } from './components/ColorTool';
 import { CarTool } from './components/CarTool';
 
-const colorList = [
-  { id: 1, name: 'red', hexcode: 'ff0000' },
-  { id: 2, name: 'green', hexcode: '00ff00' },
-  { id: 3, name: 'blue', hexcode: '0000ff' },
-];
+import { ColorToolStoreProvider } from './contexts/colorToolStoreContext';
 
 const cars = [
   { id: 1, make: 'Ford', model: 'Fusion Hybrid', year: 2018, color: 'red', price: 48000 },
@@ -17,6 +13,9 @@ const cars = [
 const root = createRoot(document.querySelector('#root'));
 root.render(<>
   {/* React.createElement(ColorTool, { colors: colorList, headerText: "Bob" })  */}
-  <ColorTool colors={colorList} headerText="Color Tool" />
+  <ColorToolStoreProvider>
+    <ColorTool headerText="Color Tool" />
+  </ColorToolStoreProvider>
+  
   <CarTool cars={cars} />
 </>);
